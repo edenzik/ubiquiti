@@ -1,0 +1,372 @@
+	<!doctype html>
+	<html xml:lang="en-gb" lang="en-gb" >
+		<head>
+						<meta name="viewport" content="width=device-width, initial-scale=1.0">
+						  <base href="http://www.smallnetbuilder.com/lanwan/lanwan-howto/32014-how-to-configure-your-ubiquiti-edgerouter-lite" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="port, config, router, configuration, file, 0" />
+  <meta name="rights" content="Copyright 2015 Pudai LLC All Rights Reserved. " />
+  <meta name="author" content="Tim Higgins" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Updated - If you are struggling to get Ubiquiti's EdgeRouter Lite to function as a basic router, these tips and pre-made config files should help {multithumb..." />
+  <meta name="generator" content=" " />
+  <title>How To Configure Your Ubiquiti EdgeRouter Lite - SmallNetBuilder</title>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+  <link rel="stylesheet" href="/plugins/content/multithumb/thumbnailviewer/thumbnailviewer.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="http://www.smallnetbuilder.com//plugins/content/bt_socialshare/assets/bt_socialshare.css" type="text/css" />
+  <link rel="stylesheet" href="http://www.smallnetbuilder.com/media/com_powertags/css/fe.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/rt_plethora/css-compiled/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/rt_plethora/css-compiled/master-6bf6a6be352f2638f792e2f952fb97de.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/rt_plethora/css-compiled/demo-6bf6a6be352f2638f792e2f952fb97de.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/rt_plethora/css-compiled/mediaqueries.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/rt_plethora/css-compiled/grid-flexbox-responsive.css" type="text/css" />
+  <link rel="stylesheet" href="/templates/rt_plethora/css/rt_plethora-custom.css" type="text/css" />
+  <style type="text/css">
+/* Multithumb 3.7.2 */
+ .multithumb { 
+display:block; 
+margin-left:auto; 
+margin-right:auto;
+border: 1px dashed black;}
+.multithumb_blog {  margin: 5px;    float: left; border: 0px none #FFFFFF; }
+ .mtGallery {     margin: 5px;     align: center;     float: none;  }
+ .mtCapStyle {     font-weight: bold;    color: black;    background-color: #ddd;    margin: 0px 4px;    text-align:center;    white-space: pre-wrap; }#relatedarticleflyoutbx{
+                                z-index:99999;
+                                position:fixed;
+                                bottom:5px;right:0;
+                                display:none;
+                                }  #relatedarticleflyoutbx2{
+                                        position:relative;
+                                        color: #8A7575;
+                                        background:#cccccc;
+                                        border:2px solid #fcb03f;
+                                        padding: 10px;
+                                         width:300px;                                                                                 
+                                        z-index:300;                                        
+                                        text-align:left; float:left;background: -ms-linear-gradient(top,#f9f9f9,#ececec);
+                                background: -moz-linear-gradient(top,#f9f9f9,#ececec);
+                                background: -o-linear-gradient(top,#f9f9f9,#ececec);
+                                background: -webkit-gradient(linear,left top,left bottom,from(#f9f9f9),to(#ececec));
+                                background: -webkit-linear-gradient(top,#f9f9f9,#ececec);
+                                background: linear-gradient(top,#f9f9f9,#ececec);
+                                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#ececec',GradientType=0 );-moz-box-shadow: -5px 5px 4px #444;
+                                -webkit-box-shadow: -5px 5px 4px #444;
+                                box-shadow: -5px 5px 4px #444;
+                                -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=207, Color='#444444');";
+                                filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=207, Color='#444444');
+                                    } .relatedarticleflyoutbxitems{margin:10px;padding:0px;}
+                                   .relatedarticleflyoutbxitem{text-align:left;float:left;display:inline-block;font-size:14px;line-height:16px; position:relative;bottom:5px;margin:5px;clear:both;}
+                                   .relatedarticleflyoutbxthumb{float:left;display:inline-block;width:70px;max-height:70px;border:1px solid #ccc;margin-right:5px; padding:2px;}a#relatedarticleflyoutbxclose {
+                                    background: url("http://www.smallnetbuilder.com/plugins/content/relatedarticles/assets/buttons/close.png") no-repeat scroll left top transparent;
+                                    cursor: pointer;
+                                    height: 15px;
+                                    position: absolute;
+                                    right: 5px;
+                                    top: 5px;
+                                    width: 15px;
+                                    }
+                                    .relatedarticleflyoutbxsldinit{
+                                      margin-right:-1000px; 
+                                    }.pwtags_list{
+font-size:1em;
+background-image:url("/media/com_powertags/images/tag_default_icon.png");
+background-repeat:no-repeat;
+margin-top:-10px;
+}
+
+.pwtags_label{
+margin-left:16px;
+font-weight:bold;
+}
+
+.pwtags_list ul {
+margin-left:3px;
+}#rt-logo {background: url(/images/smallnetbuilder_new_sitelogo_200px.jpg) 50% 0 no-repeat !important;}
+#rt-logo {width: 200px;height: 64px;}
+
+  </style>
+  <script src="/plugins/content/multithumb/thumbnailviewer/thumbnailviewer.js" type="text/javascript"></script>
+  <script src="/media/system/js/mootools-core.js" type="text/javascript"></script>
+  <script src="/media/system/js/core.js" type="text/javascript"></script>
+  <script src="/media/jui/js/jquery.min.js" type="text/javascript"></script>
+  <script src="/media/jui/js/jquery-noconflict.js" type="text/javascript"></script>
+  <script src="/media/jui/js/jquery-migrate.min.js" type="text/javascript"></script>
+  <script src="http://www.smallnetbuilder.com/plugins/content/relatedarticles/assets/js/flyoutbox.js" type="text/javascript"></script>
+  <script src="/media/system/js/caption.js" type="text/javascript"></script>
+  <script src="/media/system/js/mootools-more.js" type="text/javascript"></script>
+  <script src="/libraries/gantry/js/gantry-totop.js" type="text/javascript"></script>
+  <script src="/libraries/gantry/js/browser-engines.js" type="text/javascript"></script>
+  <script type="text/javascript">
+window.onload=function(){
+var h = document.getElementsByTagName("head"); 
+var head = h[h.length-1] ;  				
+script2 = document.createElement("script");   
+script2.type = "text/javascript";   
+var tt = "/* Image Thumbnail Viewer Script- © Dynamic Drive (www.dynamicdrive.com) * This notice must stay intact for legal use. * Visit http://www.dynamicdrive.com/ for full source code */ \n\
+thumbnailviewer.definefooter='<div class=\"footerbar\">CLOSE x</div>' \n\
+thumbnailviewer.enableAnimation=true ; \n thumbnailviewer.enableTitle=true;  \n\
+thumbnailviewer.defineLoading=\"<img src=/plugins/content/multithumb/thumbnailviewer/loading.gif /> Loading Image...\"\n\
+";
+if (navigator.appName == "Microsoft Internet Explorer") {
+	script2.text = tt;
+} else {
+	script2.appendChild( document.createTextNode(tt) );
+}
+head.appendChild(script2);  
+};
+             	 	cbflyoutbox(60, 1 , "right", 0,'relatedarticleflyoutbx','relatedarticleflyoutbxclose',700)
+             	 ;jQuery(window).on('load',  function() {
+				new JCaption('img.caption');
+			});		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+		__gaTracker('create', 'UA-1013643-1', 'auto');
+		__gaTracker('send', 'pageview');
+	
+  </script>
+		</head>
+		<body class="component-body">
+			<div class="component-content">
+		    	<div id="system-message-container">
+	</div>
+
+				<article class="item-page" itemscope itemtype="http://schema.org/Article">
+<meta itemprop="inLanguage" content="en-GB" />
+
+<hgroup>
+	<h1>
+	LAN &amp; WAN How To	</h1>
+	<h2 itemprop="name">
+							<a href="/lanwan/lanwan-howto/32014-how-to-configure-your-ubiquiti-edgerouter-lite" itemprop="url"> How To Configure Your Ubiquiti EdgeRouter Lite</a>
+					</h2>
+	</hgroup>
+
+	<ul class="actions">
+			<li>
+						<a href="#" onclick="window.print();return false;"><img src="/media/system/images/printButton.png" alt="Print" /></a>		</li>
+		</ul>
+
+
+
+
+	<dl class="article-info">
+	<dt class="article-info-term">Details</dt>
+	<dd class="published">
+		<time datetime="2013-01-30T06:00:00-05:00" itemprop="datePublished">
+			Published: Wednesday, 30 January 2013 06:00		</time>
+	</dd>
+	<dd class="createdby" itemprop="author" itemscope itemtype="http://schema.org/Person">
+								Written by <span itemprop="name">Tim Higgins</span>		</dd>
+	</dl>
+
+
+
+<div itemprop="articleBody">
+	<div class="pwtags_list"><span class="pwtags_label">Tags:</span><ul><li><a href="/tags/How-To" title="View all articles with tag How To">How To</a></li><li><a href="/tags/Ubiquiti" title="View all articles with tag Ubiquiti">Ubiquiti</a></li></ul></div><div class="bt-social-share bt-social-share-above"><div class="bt-social-share-button bt-facebook-share-button"><fb:share-button href="http://www.smallnetbuilder.com/lanwan/lanwan-howto/32014-how-to-configure-your-ubiquiti-edgerouter-lite" type="button_count"></fb:share-button></div><div class="bt-social-share-button bt-twitter-button" style="width:80px"><a href="http://twitter.com/share" class="twitter-share-button" 
+						  data-via="smallnetbuilder" 
+						  data-url="http://www.smallnetbuilder.com/lanwan/lanwan-howto/32014-how-to-configure-your-ubiquiti-edgerouter-lite" 
+						  data-size="medium"
+						  data-lang="en"
+						  data-count="horizontal" >Twitter</a></div><div class="bt-social-share-button bt-linkedin-button"><script type="IN/share" data-url="http://www.smallnetbuilder.com/lanwan/lanwan-howto/32014-how-to-configure-your-ubiquiti-edgerouter-lite"
+						 data-showzero="false"
+						 data-counter="right"></script></div><div class="bt-social-share-button bt-googleplus-button"><g:plus action="share" href="http://www.smallnetbuilder.com/lanwan/lanwan-howto/32014-how-to-configure-your-ubiquiti-edgerouter-lite" annotation="bubble" height="20" ></g:plus></div></div>
+ 
+ 
+
+<p align="center"><img src="/images/stories/lansrouters/ubiquiti_erl/ubiquiti_erl_connection_diagram.jpg" width="550" height="276" alt="The EdgeRouter Connected" title="The EdgeRouter Connected"></p>
+<h3>Introduction</h3>
+<h6>Updated 9/12/13: Improved configuration security</h6>
+  
+<p>In my <a href="/lanwan/lanwan-reviews/32012-first-look-ubiquiti-edgerouter-lite">review of Ubiquiti's EdgeRouter Lite (ERL)</a>, I promised some help with getting the router from its out-of-box raw state that doesn't function as a basic NAT router into something that actually works as a NAT router!</p>
+<p>The <a href="http://wiki.ubnt.com/SOHO_Edgemax_Example" target="_blank">SOHO Edgemax Example</a> in the Edgemax Wiki is a good resource in that it tells you <i>what</i> the configuration changes are. But when I tried to follow it, I screeched to an early halt because the first thing it has you do is change your LAN connection to  from the default port 0 (eth0) to port 1 (eth1). If you are not careful how you do this, you end up disconnected from the router admin and need to reset to start all over again.</p>
+<p>So, instead of making you stumble through your first configuration, I've prepared two  configuration files, described below, for your uploading pleasure. Either one will get you connected to the internet. Choose the one that is the closest to what you want.</p>
+<h6>Updated 9/12/13: Improved configuration security</h6>
+<blockquote><b>NOTE!</b> Ubiquiti let us know that the local firewall rules (<i>WAN_LOCAL</i>) were missing state rules that could leave them exposed to router attacks. The download files have been updated as follows:
+<p>Changed this:
+<pre>name WAN_LOCAL {
+        default-action drop
+        description "packets from Internet to the router"
+        enable-default-log
+        rule 1 {
+            action accept
+            description "allow established session to the router"
+            log disable
+            protocol all
+        }
+        rule 2 {
+            action drop
+            description "drop invalid state"
+            log enable
+            protocol all
+        }
+    }</pre> 
+<p>to this:</p>
+ <pre>name WAN_LOCAL {
+        default-action drop
+        description "packets from Internet to the router"
+        enable-default-log
+        rule 1 {
+            action accept
+            description "allow established session to the router"
+            log disable
+            protocol all
+            state {
+                established enable
+                invalid disable
+                new disable
+                related enable
+            }
+        }
+        rule 2 {
+            action drop
+            description "drop invalid state"
+            log enable
+            protocol all
+            state {
+                established disable
+                invalid enable
+                new disable
+                related disable
+            }
+        }
+    }</pre>
+  
+<a href="http://community.ubnt.com/t5/EdgeMAX/Basic-SOHO-Home-Config/m-p/398057/highlight/true#M4993" target="_blank">This post in the Ubiquiti Forums</a> also has some basic SOHO configurations with PPPoE client and PPTP remote-access server for the three port EdgeRouter Lite and a <b>basic SOHO configuration for the newer five port EdgeRouter-POE</b>.
+</blockquote><div style="float:right;padding-left:5px;padding-top:5px;padding-bottom:5px;"><div id="OA_posid_4"></div>
+<noscript><a target='_blank' href='http://vma.tgdaily.net/www/delivery/ck.php?n=a13b031'><img border='0' alt='' src='http://vma.tgdaily.net/www/delivery/avw.php?zoneid=281&n=a13b031' /></a></noscript>
+<script type='text/javascript'>
+OA_show_banner(4);
+</script></div><p><b>ubnt_erl_bridge_config.tar.gz</b> [<a href="/mydownloads/ubnt_erl/ubnt_erl_bridge_config.tar.gz">Download link</a>]</p>
+<p>This is a basic router configuration with one WAN and two LAN ports with DHCP connection type for WAN and DHCP server for the LAN. Specifically:</p>
+<ul>
+ <li>Configures port 0 as WAN, expecting a simple DHCP connection</li>
+ <li>Configures the ERL's admin address as 192.168.1.1</li>
+ <li>Bridges ports 1 and 2, essentially forming a two-port switch for LAN connection</li>
+ <li>Configures a DHCP LAN server, serving addresses from 192.168.1.100 to 192.168.1.200</li>
+ <li>Configures a simple NAT router to shart the internet with all LAN clients</li>
+ <li>Configures a firewall rules blocking all  inbound WAN-to-LAN traffic to LAN clients and to router itself</li>
+</ul>
+<p><b>ubnt_erl_2lan_w_dhcp.tar.gz </b>[<a href="/mydownloads/ubnt_erl/ubnt_erl_2lan_w_dhcp.tar.gz">Download link</a>]</p>
+<p>This configuration supports two subnets on the LAN side, with different IP ranges for each. Both subnets have internet connection, but do not allow connection between them.</p>
+<ul>
+ <li>Configures port 0 as WAN, expecting a simple DHCP connection</li>
+ <li>Configures the ERL's admin address as 192.168.1.1 on port 1 and 192.168.2.1 on port 2</li>
+ <li>Configures a 192.168.1.0 subnet with DHCP LAN server, serving addresses from 192.168.1.100 to 192.168.1.200 on port 1</li>
+ <li>Configures a second 192.168.2.0 subnet with DHCP LAN server, serving addresses from 192.168.2.100 to 192.168.2.200 on port 2</li>
+ <li>Configures a simple NAT router allowing internet connection to both subnets</li>
+ <li>Configures a firewall rules blocking all  inbound WAN-to-LAN traffic to both LAN subnets and to router itself</li>
+</ul>
+<p >Both configurations use the default <i>ubnt / ubnt</i> login.</p>
+<h3 >Installing the Configuration Files</h3>
+<p >To install either configuration, follow these steps:</p>
+<p>1) Reset the ERL to defaults, following these instructions from the <a href="http://www.ubnt.com/downloads/guides/edgemax/EdgeRouter_Lite_QSG.pdf" target="_blank">Quick Start Guide (QSG)</a>. If the ERL is factory-fresh, you can skip this step.</p>
+<blockquote>
+ <p><i>To reset to factory defaults, disconnect the Power Adapter from the Power port. Press and hold the Reset button while connecting the Power Adapter to the Power port. Keep holding the button until the right LED on port 2 starts flashing and then stops  after a few seconds.</i></p>
+ <p><b>Make sure you press the reset button until the port 2 light stops flashing and goes out.</b></p>
+</blockquote>
+<p>2) Download the desired configuration file to the computer you will use to configure the ERL.</p>
+<p>3) Connect a computer to the ERL, following the instructions from the QSG below.</p>
+<p align="center"><a target="_blank" href="/images/stories/lansrouters/ubiquiti_erl/ubiquiti_erl_qsg_connect.jpg" rel="thumbnail" title="Connecting to the ERL" style="cursor: url('/plugins/content/multithumb/magnify.cur'), auto;" ><img src="http://www.smallnetbuilder.com/images/multithumb_thumbs/b_550_0_16777215_00_images_stories_lansrouters_ubiquiti_erl_ubiquiti_erl_qsg_connect.jpg"        width="550" height="432"    alt="Connecting to the ERL" title="Connecting to the ERL"  class="multithumb"      /></a></p>
+<h6 align="center">Connecting to the ERL</h6>
+<p>You can ignore any invalid security certificate warnings from your browser. Just accept the certificates.</p>
+<p>4) Click the System tab at the bottom of the <b>Admin</b> screen and scroll down to the bottom until you see the <b>Restore Config</b> button as shown below. <b>Do not</b> use the Upgrade System Image button. That is used to upgrade router firmware. Click the <b>Restore Config Upload a File</b> button and select the file. </p>
+<blockquote>
+ <p>NOTE! You do not get a confirmation prompt and file upload is pretty much instantaneous. So be sure you select the correct file!</p>
+</blockquote>
+<p align="center"><a target="_blank" href="/images/stories/lansrouters/ubiquiti_erl/ubiquiti_erl_restore_config.jpg" rel="thumbnail" title="Connecting to the ERL" style="cursor: url('/plugins/content/multithumb/magnify.cur'), auto;" ><img src="http://www.smallnetbuilder.com/images/multithumb_thumbs/b_550_0_16777215_00_images_stories_lansrouters_ubiquiti_erl_ubiquiti_erl_restore_config.jpg"        width="550" height="492"    alt="Connecting to the ERL" title="Connecting to the ERL"  class="multithumb"      /></a></p>
+<h6 align="center">Connecting to the ERL</h6>
+<p>5) Respond to the prompt to reboot the router to apply the configuration. <b>When the reboot starts, move your computer from port 0 to port 1.</b> This is because both configurations change the LAN connection from port 0 to port 1. Connect your modem or internet connection device to port 0. <b>Wait about a minute for the router to reboot.</b></p>
+<p>6) If you leave the browser alone, you should get a prompt that your session has expired and you need to log in again. This means the router has properly rebooted and the configuration has taken. If you don't get this prompt after a minute or so, you can try entering 192.168.1.1 into your browser again to access the ERL admin.</p>
+<p>7) Remove the static IP settings from your computer and set it to obtain its IP address automatically, i.e. be a DHCP client. Force a DHCP release/renew on your computer or do a connection repair or whatever you need to do to get your client to perform a DHCP request. Check that the IP address is in the proper range and that the Gateway and DNS both point to 192.168.1.1.</p>
+<p>8) If the client IP address information checks out as described in #7, then you should be good to go. Point your browser at your favorite site and enjoy!</p>
+
+  
+<h3>Tips For Rolling Your Own Config</h3>
+<p>Once you have one of these basic configurations in place, you can experiment with changing them. But there are a few things to keep in mind.</p>
+<ul>
+ <li>The tar.gz file generated via the <b>System &gt; Backup Config</b> button backs up the ERL's entire config folder, whose contents are shown below. I <a href="http://forum.ubnt.com/showthread.php?t=67802" target="_blank">learned this the hard way</a>, with the help of <i>mrjester</i> in the EdgeMax Forum.<br />
+  <br />
+  The <i>config.boot</i> file is the only thing you need to edit if you want to modify a configuration offline. But you must then tar and gzip the entire config folder contents before you can use the <b>Restore Config</b> button. If you try to just restore the <b>config.boot</b> file using that button, you will get an error. I used <a href="http://www.7-zip.org/" target="_blank">7-zip</a> to tar, then gzip the tar file before upload.</li>
+</ul>
+<p align="center"><a target="_blank" href="/images/stories/lansrouters/ubiquiti_erl/ubiquiti_erl_config_folder.jpg" rel="thumbnail" title="Config folder contents" style="cursor: url('/plugins/content/multithumb/magnify.cur'), auto;" ><img src="http://www.smallnetbuilder.com/images/multithumb_thumbs/b_550_0_16777215_00_images_stories_lansrouters_ubiquiti_erl_ubiquiti_erl_config_folder.jpg"        width="550" height="327"    alt="Config folder contents" title="Config folder contents"  class="multithumb"      /></a></p>
+<h6 align="center">Config folder contents</h6>
+<ul>
+ <li>You can find example <i>config.boot</i> files in the <a href="http://forum.ubnt.com/forumdisplay.php?f=84" target="_blank">EdgeMax Forum</a>. But you must put them into a properly constructed <i>tar.gz</i> backup file as described above to upload them via the Restore Config button. If you want to upload just the <i>config.boot</i> file itself, see the next tip.</li>
+ <li>You can transfer files to the ERL using <a href="http://winscp.net/eng/index.php" target="_blank">WinSCP</a> and other SSH based programs. But note that most files are owned by root, so you can't just overwrite them. You will have to rename the <i>config.boot</i> file first, then upload your modified version and then reboot the ERL to have the new configuration used.</li>
+ <li>The  <a href="http://wiki.ubnt.com/EdgeMAX_PortForward" target="_blank">Port Forward example</a> is a good starting point if you want to learn to forward ports. Note that you need to set both NAT and firewall rules for each port you want to open.</li>
+ <li>You have access to most common Linux commands when logged into the CLI window or connected via Telnet or SSH. So you can modify the <i>config.boot </i>file directly if you like to live dangerously. But make a copy first!</li>
+ <li> Some of the CLI commands can be found in the <a href="http://wiki.ubnt.com/Command_Line_Interface" target="_blank">Wiki</a>, but there isn't a complete list or a downloadable reference available from Ubiquiti. Since EdgeOS hasn't diverged much from Vyatta at this point, the <a href="http://www.vyatta.com/products/protocols.php">Vyatta Quick Start</a> and <a href="http://www.vyatta.org/files/Glendale_BasicCLICommands_v02.pdf">Basic CLI references</a> might be helpful in getting up the learning curve.</li>
+ <li>Ask questions over in the <a href="http://forum.ubnt.com/forumdisplay.php?f=84" target="_blank">EdgeMax Forum</a>. My questions about the config file were answered within 30 minutes or so...on a Sunday!</li>
+</ul>
+<p>If you find errors or problems using either the config files or these instructions, post in the SNB Forums or <a href="mailto:comments@smallnetbuilder.com">send an email</a>.</p><div id='relatedarticleflyoutbx'><div id='relatedarticleflyoutbx2'><h3 id="related_title" style="color:#d62828;">Related Articles</h3><a id="relatedarticleflyoutbxclose"></a><ul class="relatedarticleflyoutbxitems">
+						<li style="clear:both;" class="relatedarticleflyoutbxitem" itemscope itemtype="http://schema.org/Article">
+				<a href="/lanwan/lanwan-reviews/32398-ubiquiti-edgemax-edgerouter-pro-reviewed" target="_self" itemprop="url">
+					<span itemprop="name">
+						Ubiquiti EdgeMax EdgeRouter Pro Reviewed
+					</span>
+				</a>
+					<div style="clear:both;">
+				
+			</li>
+						<li style="clear:both;" class="relatedarticleflyoutbxitem" itemscope itemtype="http://schema.org/Article">
+				<a href="/other/security/security-howto/32542-setting-up-and-using-openvpn-on-netgear-routers" target="_self" itemprop="url">
+					<span itemprop="name">
+						Setting Up And Using OpenVPN On NETGEAR Routers
+					</span>
+				</a>
+					<div style="clear:both;">
+				
+			</li>
+						<li style="clear:both;" class="relatedarticleflyoutbxitem" itemscope itemtype="http://schema.org/Article">
+				<a href="/other/security/security-howto/32538-setting-up-and-using-openvpn-on-asus-routers" target="_self" itemprop="url">
+					<span itemprop="name">
+						Setting Up And Using OpenVPN On ASUS Routers
+					</span>
+				</a>
+					<div style="clear:both;">
+				
+			</li>
+						<li style="clear:both;" class="relatedarticleflyoutbxitem" itemscope itemtype="http://schema.org/Article">
+				<a href="/lanwan/lanwan-howto/24431-howtotworoutersharing" target="_self" itemprop="url">
+					<span itemprop="name">
+						How To: Setting up File and Printer sharing between two routers
+					</span>
+				</a>
+					<div style="clear:both;">
+				
+			</li>
+						<li style="clear:both;" class="relatedarticleflyoutbxitem" itemscope itemtype="http://schema.org/Article">
+				<a href="/lanwan/lanwan-howto/24428-howtotwoprivlan" target="_self" itemprop="url">
+					<span itemprop="name">
+						How To: One Internet connection - Two Private LANs
+					</span>
+				</a>
+					<div style="clear:both;">
+				
+			</li></ul></div></div><div align="center"><div style="text-align:center; width:300px; background-color:#FFFFCC; border:solid 1px black; padding:5px 5px 5px 5px; margin:10px 0px 15px 0px;"><a href="http://forums.smallnetbuilder.com/forumdisplay.php?f=19"><b>Discuss this in the Forums</b></a></div></div><div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Neo AdX SNB_468x60_Bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:468px;height:60px"
+     data-ad-client="ca-pub-9579993617424571"
+     data-ad-slot="8915255446"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><div id="fb-root"></div>
+				<script>(function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) {return;}
+				  js = d.createElement(s); js.id = id;
+				  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=136272296398941";
+				  fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script><script src="//platform.twitter.com/widgets.js" type="text/javascript"></script><script type="text/javascript" src="//platform.linkedin.com/in.js">lang: en_GB</script><script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: 'en-GB'}</script></div>
+
+
+
+	</article>
+
+
+
+			</div>
+		</body>
+	</html>
